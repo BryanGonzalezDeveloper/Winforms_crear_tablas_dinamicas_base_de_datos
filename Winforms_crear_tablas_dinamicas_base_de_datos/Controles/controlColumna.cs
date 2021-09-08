@@ -8,7 +8,12 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.Controles
         {
             InitializeComponent();
         }
-        public string Columna
+        public void reset()
+        {
+            cboDatatype.SelectedIndex = 0;
+            txtNombreColumna.Text = null;
+        }
+        public string Nombre
         {
             get
             {

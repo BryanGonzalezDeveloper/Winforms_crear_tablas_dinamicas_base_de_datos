@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+
 namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
 {
     /// <summary>
@@ -16,7 +18,10 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
         /// Representacion de una instruccion en sql.
         /// </summary>
         SqlCommand instruccionSQL;
-
+        /// <summary>
+        /// Representacion de lectura de registros en la base de datos.
+        /// </summary>
+        SqlDataReader dr;
 
         /// <summary>
         /// Metodo encargado de crear una tabla de forma dinamica en una base de datos
@@ -35,11 +40,11 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
         /// objeto.crearTabla(tblTest, prueba1 int, prueba2 varchar(100), prueba3 date);
         /// </code>
         /// </example>
-        public bool crearTabla(string nombreTabla,string campo1,string campo2,string campo3)
+        public bool crearTabla(string nombreTabla, string campo1, string campo2, string campo3)
         {
             try
             {
-                instruccionSQL = new SqlCommand("sp_crearTabla",objConexion);
+                instruccionSQL = new SqlCommand("sp_crearTabla", objConexion);
                 instruccionSQL.CommandType = CommandType.StoredProcedure;
                 instruccionSQL.Parameters.AddWithValue("@nombreTabla", nombreTabla);
                 instruccionSQL.Parameters.AddWithValue("@campo1", campo1);
@@ -64,7 +69,7 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
         {
             try
             {
-                instruccionSQL=new SqlCommand("sp_eliminarTabla", objConexion);
+                instruccionSQL = new SqlCommand("sp_eliminarTabla", objConexion);
                 instruccionSQL.CommandType = CommandType.StoredProcedure;
                 instruccionSQL.Parameters.AddWithValue("@nombreTabla", nombreTabla);
                 objConexion.Open();
@@ -75,6 +80,35 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
             {
 
                 return false;
+            }
+            finally
+            {
+                objConexion.Close();
+            }
+        }
+
+        public List<clsInformacionTablas> listadoTablas()
+        {
+            try
+            {
+                instruccionSQL = new SqlCommand("sp_nombreTablas", objConexion);
+                instruccionSQL.CommandType = CommandType.StoredProcedure;
+                objConexion.Open();
+                dr = instruccionSQL.ExecuteReader();
+                List<clsInformacionTablas> lista = new List<clsInformacionTablas>();
+                while (dr.Read())
+                {
+                    lista.Add(new clsInformacionTablas()
+                    {
+                        Nombre = dr[0].ToString(),
+                        id = Convert.ToInt32(dr[1].ToString())
+                    });
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+                return null;
             }
             finally
             {

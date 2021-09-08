@@ -57,6 +57,7 @@
       <DependentUpon>controlColumna.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\ClsConexion.cs" />
+    <Compile Include="DB\clsInformacionTablas.cs" />
     <Compile Include="DB\clsMetodosDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

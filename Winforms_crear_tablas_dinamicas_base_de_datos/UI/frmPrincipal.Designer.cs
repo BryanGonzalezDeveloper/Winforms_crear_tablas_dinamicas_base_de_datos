@@ -31,21 +31,29 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.OPCIONES = new System.Windows.Forms.ToolStripMenuItem();
             this.crearTablaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cAMPOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcion_crearTabla = new System.Windows.Forms.ToolStripMenuItem();
             this.opcion_eliminarTabla = new System.Windows.Forms.ToolStripMenuItem();
+            this.cAMPOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcion_añadirCampo = new System.Windows.Forms.ToolStripMenuItem();
             this.opcioneliminarCampo = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnCrear = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.controlColumna1 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
+            this.controlColumna2 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
+            this.controlColumna3 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNombreTabla = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,18 +68,13 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // OPCIONES
             // 
             this.OPCIONES.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearTablaToolStripMenuItem,
             this.cAMPOSToolStripMenuItem});
             this.OPCIONES.Name = "OPCIONES";
-            this.OPCIONES.Size = new System.Drawing.Size(76, 20);
+            this.OPCIONES.Size = new System.Drawing.Size(102, 25);
             this.OPCIONES.Text = "OPCIONES";
             // 
             // crearTablaToolStripMenuItem
@@ -80,8 +83,22 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.opcion_crearTabla,
             this.opcion_eliminarTabla});
             this.crearTablaToolStripMenuItem.Name = "crearTablaToolStripMenuItem";
-            this.crearTablaToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.crearTablaToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.crearTablaToolStripMenuItem.Text = "TABLAS";
+            // 
+            // opcion_crearTabla
+            // 
+            this.opcion_crearTabla.Name = "opcion_crearTabla";
+            this.opcion_crearTabla.Size = new System.Drawing.Size(187, 26);
+            this.opcion_crearTabla.Text = "Crear tabla";
+            this.opcion_crearTabla.Click += new System.EventHandler(this.opcion_crearTabla_Click);
+            // 
+            // opcion_eliminarTabla
+            // 
+            this.opcion_eliminarTabla.Name = "opcion_eliminarTabla";
+            this.opcion_eliminarTabla.Size = new System.Drawing.Size(187, 26);
+            this.opcion_eliminarTabla.Text = "Eliminar tabla";
+            this.opcion_eliminarTabla.Click += new System.EventHandler(this.opcion_eliminarTabla_Click);
             // 
             // cAMPOSToolStripMenuItem
             // 
@@ -89,36 +106,27 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.opcion_añadirCampo,
             this.opcioneliminarCampo});
             this.cAMPOSToolStripMenuItem.Name = "cAMPOSToolStripMenuItem";
-            this.cAMPOSToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.cAMPOSToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.cAMPOSToolStripMenuItem.Text = "CAMPOS (columnas)";
-            // 
-            // opcion_crearTabla
-            // 
-            this.opcion_crearTabla.Name = "opcion_crearTabla";
-            this.opcion_crearTabla.Size = new System.Drawing.Size(180, 22);
-            this.opcion_crearTabla.Text = "Crear tabla";
-            this.opcion_crearTabla.Click += new System.EventHandler(this.opcion_crearTabla_Click);
-            // 
-            // opcion_eliminarTabla
-            // 
-            this.opcion_eliminarTabla.Name = "opcion_eliminarTabla";
-            this.opcion_eliminarTabla.Size = new System.Drawing.Size(180, 22);
-            this.opcion_eliminarTabla.Text = "Eliminar tabla";
-            this.opcion_eliminarTabla.Click += new System.EventHandler(this.opcion_eliminarTabla_Click);
             // 
             // opcion_añadirCampo
             // 
             this.opcion_añadirCampo.Name = "opcion_añadirCampo";
-            this.opcion_añadirCampo.Size = new System.Drawing.Size(180, 22);
+            this.opcion_añadirCampo.Size = new System.Drawing.Size(200, 26);
             this.opcion_añadirCampo.Text = "Añadir campo";
             this.opcion_añadirCampo.Click += new System.EventHandler(this.opcion_añadirCampo_Click);
             // 
             // opcioneliminarCampo
             // 
             this.opcioneliminarCampo.Name = "opcioneliminarCampo";
-            this.opcioneliminarCampo.Size = new System.Drawing.Size(180, 22);
+            this.opcioneliminarCampo.Size = new System.Drawing.Size(200, 26);
             this.opcioneliminarCampo.Text = "Eliminar campo";
             this.opcioneliminarCampo.Click += new System.EventHandler(this.opcioneliminarCampo_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // materialTabControl1
             // 
@@ -138,6 +146,13 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtNombreTabla);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.controlColumna3);
+            this.tabPage1.Controls.Add(this.controlColumna2);
+            this.tabPage1.Controls.Add(this.controlColumna1);
+            this.tabPage1.Controls.Add(this.btnLimpiar);
+            this.tabPage1.Controls.Add(this.btnCrear);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -174,6 +189,78 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.tabPage4.Text = "ELIMINAR CAMPO";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // btnCrear
+            // 
+            this.btnCrear.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnCrear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCrear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrear.Location = new System.Drawing.Point(188, 265);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(177, 34);
+            this.btnCrear.TabIndex = 3;
+            this.btnCrear.Text = "CREAR TABLA";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnLimpiar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnLimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.Location = new System.Drawing.Point(423, 265);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(177, 34);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // controlColumna1
+            // 
+            this.controlColumna1.Columna = "";
+            this.controlColumna1.Location = new System.Drawing.Point(41, 60);
+            this.controlColumna1.Name = "controlColumna1";
+            this.controlColumna1.Size = new System.Drawing.Size(670, 59);
+            this.controlColumna1.TabIndex = 5;
+            this.controlColumna1.tipoDato = "";
+            // 
+            // controlColumna2
+            // 
+            this.controlColumna2.Columna = "";
+            this.controlColumna2.Location = new System.Drawing.Point(41, 200);
+            this.controlColumna2.Name = "controlColumna2";
+            this.controlColumna2.Size = new System.Drawing.Size(670, 59);
+            this.controlColumna2.TabIndex = 6;
+            this.controlColumna2.tipoDato = "";
+            // 
+            // controlColumna3
+            // 
+            this.controlColumna3.Columna = "";
+            this.controlColumna3.Location = new System.Drawing.Point(41, 125);
+            this.controlColumna3.Name = "controlColumna3";
+            this.controlColumna3.Size = new System.Drawing.Size(670, 59);
+            this.controlColumna3.TabIndex = 7;
+            this.controlColumna3.tipoDato = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(66, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Nombre de la tabla:";
+            // 
+            // txtNombreTabla
+            // 
+            this.txtNombreTabla.Location = new System.Drawing.Point(237, 34);
+            this.txtNombreTabla.MaxLength = 150;
+            this.txtNombreTabla.Name = "txtNombreTabla";
+            this.txtNombreTabla.Size = new System.Drawing.Size(267, 20);
+            this.txtNombreTabla.TabIndex = 9;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +274,8 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.materialTabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +297,12 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
+        private Controles.controlColumna controlColumna3;
+        private Controles.controlColumna controlColumna2;
+        private Controles.controlColumna controlColumna1;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.TextBox txtNombreTabla;
+        private System.Windows.Forms.Label label1;
     }
 }

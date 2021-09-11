@@ -46,11 +46,14 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.btnLimpiarCamposColumna = new System.Windows.Forms.Button();
             this.btnCrearTabla = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnEliminarTabla = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.cboListaTablas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnEliminarTabla = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cboTablas = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.controlColumna3 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
             this.controlColumna2 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
             this.controlColumna1 = new Winforms_crear_tablas_dinamicas_base_de_datos.Controles.controlColumna();
@@ -58,6 +61,7 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -116,8 +120,8 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             // opcion_añadirCampo
             // 
             this.opcion_añadirCampo.Name = "opcion_añadirCampo";
-            this.opcion_añadirCampo.Size = new System.Drawing.Size(200, 26);
-            this.opcion_añadirCampo.Text = "Añadir campo";
+            this.opcion_añadirCampo.Size = new System.Drawing.Size(210, 26);
+            this.opcion_añadirCampo.Text = "Modificar campo";
             this.opcion_añadirCampo.Click += new System.EventHandler(this.opcion_añadirCampo_Click);
             // 
             // opcioneliminarCampo
@@ -225,38 +229,6 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.tabPage2.Text = "ELIMINAR TABLA";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnEliminarTabla
-            // 
-            this.btnEliminarTabla.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
-            this.btnEliminarTabla.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnEliminarTabla.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
-            this.btnEliminarTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarTabla.Location = new System.Drawing.Point(215, 93);
-            this.btnEliminarTabla.Name = "btnEliminarTabla";
-            this.btnEliminarTabla.Size = new System.Drawing.Size(177, 34);
-            this.btnEliminarTabla.TabIndex = 11;
-            this.btnEliminarTabla.Text = "ELIMINAR TABLA";
-            this.btnEliminarTabla.UseVisualStyleBackColor = true;
-            this.btnEliminarTabla.Click += new System.EventHandler(this.btnEliminarTabla_Click);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(881, 409);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "AÑADIR CAMPO";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(881, 409);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "ELIMINAR CAMPO";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // cboListaTablas
             // 
             this.cboListaTablas.FormattingEnabled = true;
@@ -274,6 +246,68 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.label2.Size = new System.Drawing.Size(153, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "Seleccione una tabla:";
+            // 
+            // btnEliminarTabla
+            // 
+            this.btnEliminarTabla.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnEliminarTabla.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnEliminarTabla.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
+            this.btnEliminarTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarTabla.Location = new System.Drawing.Point(215, 93);
+            this.btnEliminarTabla.Name = "btnEliminarTabla";
+            this.btnEliminarTabla.Size = new System.Drawing.Size(177, 34);
+            this.btnEliminarTabla.TabIndex = 11;
+            this.btnEliminarTabla.Text = "ELIMINAR TABLA";
+            this.btnEliminarTabla.UseVisualStyleBackColor = true;
+            this.btnEliminarTabla.Click += new System.EventHandler(this.btnEliminarTabla_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage3.Controls.Add(this.cboTablas);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(881, 409);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "MODIFICAR CAMPO";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(30, 71);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(690, 306);
+            this.flowLayoutPanel1.TabIndex = 17;
+            // 
+            // cboTablas
+            // 
+            this.cboTablas.FormattingEnabled = true;
+            this.cboTablas.Location = new System.Drawing.Point(255, 20);
+            this.cboTablas.Name = "cboTablas";
+            this.cboTablas.Size = new System.Drawing.Size(201, 21);
+            this.cboTablas.TabIndex = 16;
+            this.cboTablas.SelectedIndexChanged += new System.EventHandler(this.cboTablas_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(75, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 17);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Seleccione una tabla:";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(881, 409);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "ELIMINAR CAMPO";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // controlColumna3
             // 
@@ -320,6 +354,8 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,5 +387,8 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
         private System.Windows.Forms.Button btnEliminarTabla;
         private System.Windows.Forms.ComboBox cboListaTablas;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboTablas;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

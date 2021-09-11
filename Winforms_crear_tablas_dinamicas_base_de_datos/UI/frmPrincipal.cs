@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Winforms_crear_tablas_dinamicas_base_de_datos.Controles;
 using Winforms_crear_tablas_dinamicas_base_de_datos.DB;
 
 namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
@@ -27,7 +26,9 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
 
         private void opcion_añadirCampo_Click(object sender, EventArgs e)
         {
-
+            cboTablas.Items.Clear();
+            var lista = db.listadoTablas();
+            lista.ForEach(t => cboTablas.Items.Add(t.Nombre));
         }
 
         private void opcioneliminarCampo_Click(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             if (db.crearTabla(txtNombreTabla.Text,
                 controlColumna1.Nombre + " " + controlColumna1.tipoDato,
                 controlColumna2.Nombre + " " + controlColumna2.tipoDato,
-                controlColumna3.Nombre+ " "+ controlColumna3.tipoDato))
+                controlColumna3.Nombre + " " + controlColumna3.tipoDato))
             {
                 MessageBox.Show("La tabla fue creada correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 llenarListado(cboListaTablas);
@@ -51,7 +52,7 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
 
         private void btnEliminarTabla_Click(object sender, EventArgs e)
         {
-            if (cboListaTablas.SelectedIndex!=-1)
+            if (cboListaTablas.SelectedIndex != -1)
             {
                 if (MessageBox.Show("¿Seguro que desea eliminar la tabla?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -84,6 +85,11 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             controlColumna2.reset();
             controlColumna3.reset();
             txtNombreTabla.Focus();
+        }
+
+        private void cboTablas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

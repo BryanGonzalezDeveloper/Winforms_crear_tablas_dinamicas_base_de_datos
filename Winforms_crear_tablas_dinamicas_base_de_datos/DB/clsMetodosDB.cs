@@ -5,41 +5,15 @@ using System.Data.SqlClient;
 
 namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
 {
-    /// <summary>
-    /// Clase encargada de realizar operaciones sobre tablas y sus columnas.
-    /// </summary>
+
     class clsMetodosDB
     {
-        /// <summary>
-        /// Objeto que representa la conexion hacia la base de datos.
-        /// </summary>
+
         SqlConnection objConexion = new SqlConnection(ClsConexion.getConnectionString);
-        /// <summary>
-        /// Representacion de una instruccion en sql.
-        /// </summary>
         SqlCommand instruccionSQL;
-        /// <summary>
-        /// Representacion de lectura de registros en la base de datos.
-        /// </summary>
+
         SqlDataReader dr;
 
-        /// <summary>
-        /// Metodo encargado de crear una tabla de forma dinamica en una base de datos
-        /// especifica. El requerimiento consiste en generar una tabla con 3 campos (columnas)
-        /// </summary>
-        /// <param name="nombreTabla">Nombre que sera asignado a la tabla (maximo 150 caracteres)</param>
-        /// <param name="campo1"> Nombre del campo 1(maximo 150 caracteres) y del tipo de dato</param>
-        /// <param name="campo2"> Nombre del campo 1(maximo 150 caracteres) y del tipo de dato</param>
-        /// <param name="campo3"> Nombre del campo 1(maximo 150 caracteres) y del tipo de dato</param>
-        /// <returns>
-        /// True si el metodo se ejecuta sin errores, false en caso contrario
-        /// </returns>
-        /// <example>
-        /// El metodo debe ser invocado de la siguiente manera:
-        /// <code>
-        /// objeto.crearTabla(tblTest, prueba1 int, prueba2 varchar(100), prueba3 date);
-        /// </code>
-        /// </example>
         public bool crearTabla(string nombreTabla, string campo1, string campo2, string campo3)
         {
             try
@@ -105,6 +79,37 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
                     });
                 }
                 return lista;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                objConexion.Close();
+            }
+        }
+
+        public List<clsCampo> listadoCampos(string nombreTabla)
+        {
+            try
+            {
+                instruccionSQL = new SqlCommand("sp_infoTablas", objConexion);
+                instruccionSQL.CommandType = CommandType.StoredProcedure;
+                instruccionSQL.Parameters.AddWithValue("@nombreTabla", nombreTabla);
+                objConexion.Open();
+                dr = instruccionSQL.ExecuteReader();
+                List<clsCampo> listaCampos = new List<clsCampo>();
+                while (dr.Read())
+                {
+                    listaCampos.Add(
+                        new clsCampo
+                        {
+                            NombreCampo = dr[1].ToString(),
+                            TipoDato = dr[1].ToString().ToUpper()
+                        });
+                }
+                return listaCampos;
             }
             catch (Exception)
             {

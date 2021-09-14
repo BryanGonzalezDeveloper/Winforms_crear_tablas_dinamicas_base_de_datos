@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Winforms_crear_tablas_dinamicas_base_de_datos.Controles;
 using Winforms_crear_tablas_dinamicas_base_de_datos.DB;
 
 namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
@@ -29,11 +30,15 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
             cboTablas.Items.Clear();
             var lista = db.listadoTablas();
             lista.ForEach(t => cboTablas.Items.Add(t.Nombre));
+            materialTabControl1.SelectTab(2);
         }
 
         private void opcioneliminarCampo_Click(object sender, EventArgs e)
         {
-
+            cboEliminarCampo.Items.Clear();
+            var lista = db.listadoTablas();
+            lista.ForEach(t => cboEliminarCampo.Items.Add(t.Nombre));
+            materialTabControl1.SelectTab(3);
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -89,7 +94,75 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.UI
 
         private void cboTablas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboTablas.SelectedIndex != -1)
+            {
+                mostrarCampos();
+            }
+        }
 
+        private void btnModificarCampos_Click(object sender, EventArgs e)
+        {
+            foreach (var campo in flowLayoutPanel1.Controls)
+            {
+                if (campo is controlCampo)
+                {
+                    controlCampo col = (controlCampo)campo;
+                    if (col.fueModificado())
+                    {
+                        db.modificarCampos(cboTablas.Text, col.Nombre, col.TipoDato);
+                    }
+                }
+            }
+            mostrarCampos();
+        }
+
+        void mostrarCampos()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            var lista = db.listadoCampos(cboTablas.Text);
+            List<controlCampo> listaControles = new List<controlCampo>(lista.Count);
+            for (int i = 0; i < lista.Count; i++)
+            {
+                listaControles.Add(new controlCampo { Nombre = lista[i].NombreCampo });
+                listaControles[i].setTipoDato(lista[i].TipoDato);
+                flowLayoutPanel1.Controls.Add(listaControles[i]);
+            }
+        }
+
+        private void cboEliminarCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboEliminarCampo.SelectedIndex!=-1)
+            {
+                mostrarCamposTablas();
+            }
+        }
+
+        private void btnEliminarCampos_Click(object sender, EventArgs e)
+        {
+            foreach (var campo in flowLayoutPanel2.Controls)
+            {
+                if(campo is controlEliminarCampo)
+                {
+                   controlEliminarCampo ctrl = (controlEliminarCampo)campo;
+                    if(ctrl.Eliminar)
+                    {
+                        db.eliminarCampo(cboEliminarCampo.Text, ctrl.campo);
+                    }
+                }
+            }
+            mostrarCamposTablas();
+        }
+        void mostrarCamposTablas()
+        {
+            flowLayoutPanel2.Controls.Clear();
+            var lista = db.listadoCampos(cboEliminarCampo.Text);
+            List<controlEliminarCampo> listaControles = new List<controlEliminarCampo>(lista.Count);
+            for (int i = 0; i < lista.Count; i++)
+            {
+                listaControles.Add(new controlEliminarCampo { campo = lista[i].NombreCampo });
+                listaControles[i].setNombreCampo(lista[i].NombreCampo);
+                flowLayoutPanel2.Controls.Add(listaControles[i]);
+            }
         }
     }
 }

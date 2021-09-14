@@ -50,12 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controles\controlCampo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\controlCampo.Designer.cs">
+      <DependentUpon>controlCampo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controles\controlColumna.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controles\controlColumna.Designer.cs">
       <DependentUpon>controlColumna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controles\controlEliminarCampo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\controlEliminarCampo.Designer.cs">
+      <DependentUpon>controlEliminarCampo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\clsCampo.cs" />
     <Compile Include="DB\ClsConexion.cs" />
     <Compile Include="DB\clsInformacionTablas.cs" />
     <Compile Include="DB\clsMetodosDB.cs" />
@@ -67,8 +80,14 @@
     <Compile Include="UI\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controles\controlCampo.resx">
+      <DependentUpon>controlCampo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controles\controlColumna.resx">
       <DependentUpon>controlColumna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\controlEliminarCampo.resx">
+      <DependentUpon>controlEliminarCampo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UI\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
@@ -97,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Validaciones\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_basket_1814090.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -71,10 +71,16 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.Controles
             "DECIMAL(8,2)",
             "DATE"});
             this.cboTipoDato.FormattingEnabled = true;
+            this.cboTipoDato.Items.AddRange(new object[] {
+            "VARCHAR(100)",
+            "INT",
+            "DECIMAL(8,2)",
+            "DATE"});
             this.cboTipoDato.Location = new System.Drawing.Point(413, 21);
             this.cboTipoDato.Name = "cboTipoDato";
             this.cboTipoDato.Size = new System.Drawing.Size(202, 21);
             this.cboTipoDato.TabIndex = 3;
+            this.cboTipoDato.SelectedIndexChanged += new System.EventHandler(this.cboTipoDato_SelectedIndexChanged);
             // 
             // controlCampo
             // 

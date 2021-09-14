@@ -106,7 +106,7 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
                         new clsCampo
                         {
                             NombreCampo = dr[1].ToString(),
-                            TipoDato = dr[1].ToString().ToUpper()
+                            TipoDato = dr[2].ToString().ToUpper()
                         });
                 }
                 return listaCampos;
@@ -114,6 +114,35 @@ namespace Winforms_crear_tablas_dinamicas_base_de_datos.DB
             catch (Exception)
             {
                 return null;
+            }
+            finally
+            {
+                objConexion.Close();
+            }
+        }
+
+        public void modificarCampos(string nombreTabla, string campo,string tipoDato)
+        {
+            try
+            {
+                rograa
+                instruccionSQL = new SqlCommand("alter table " + nombreTabla + " alter column " + campo + " " + tipoDato,objConexion);
+                objConexion.Open();
+                instruccionSQL.ExecuteNonQuery();
+            }
+            finally
+            {
+                objConexion.Close();
+            }
+        }
+
+        public void eliminarCampo(string nombreTabla, string campo)
+        {
+            try
+            {
+                instruccionSQL = new SqlCommand("alter table " + nombreTabla + " drop column " + campo, objConexion);
+                objConexion.Open();
+                instruccionSQL.ExecuteNonQuery();
             }
             finally
             {
